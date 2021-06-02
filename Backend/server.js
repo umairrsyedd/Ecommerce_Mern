@@ -5,16 +5,19 @@ import colors from "colors";
 import { notFound, errorHandler } from "./Middleware/errorMiddleware.js";
 // Routes
 import Product from "./Routes/ProductRoute.js";
-
+import User from "./Routes/UserRoutes.js";
 //Config
 dotenv.config();
 connectDB();
 const app = express();
+app.use(express.json());
 app.get("/", (req, res) => {
   res.send("API is running");
 });
 //Routes
 app.use("/api/products", Product);
+app.use("/api/users", User);
+
 //Middleware Error
 app.use(notFound);
 app.use(errorHandler);
